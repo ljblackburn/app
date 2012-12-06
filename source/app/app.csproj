@@ -87,6 +87,16 @@
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInDepartmentRequest.cs" />
     <Compile Include="web\core\aspnet\ASPNetHandler.cs" />
+    <Compile Include="web\core\aspnet\ICreateAWebFormView.cs" />
+    <Compile Include="web\core\aspnet\ICreateTheRawAspView.cs" />
+    <Compile Include="web\core\aspnet\IDisplayAReport.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\core\aspnet\IGetTheCurrentlyExecutingRequest.cs" />
+    <Compile Include="web\core\aspnet\IFindPathsToViewTemplates.cs" />
+    <Compile Include="web\core\aspnet\stubs\StubPathRegistry.cs" />
+    <Compile Include="web\core\aspnet\WebFormDisplayEngine.cs" />
+    <Compile Include="web\core\aspnet\WebFormViewFactory.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\IContainRequestDetails.cs" />
@@ -99,7 +109,6 @@
     <Compile Include="web\core\IRunOneRequest .cs" />
     <Compile Include="web\core\ISupportAUserFeature.cs" />
     <Compile Include="web\core\RequestCommand.cs" />
-    <Compile Include="web\core\stubs\StubDisplayEngine.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsInADepartment.cs" />
