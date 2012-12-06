@@ -82,6 +82,7 @@
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewDepartmentInDepartmentRequest.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewItemsInTheStoreCatalog.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInDepartmentRequest.cs" />
