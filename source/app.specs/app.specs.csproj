@@ -116,9 +116,9 @@
     <Compile Include="ASPNetHandlerSpecs.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
+    <Compile Include="GenericCommandSpecs.cs" />
     <Compile Include="RequestCommandSpecs.cs" />
     <Compile Include="utility\ObjectFactory.cs" />
-    <Compile Include="ViewTheDepartmentsInADepartmentSpecs.cs" />
     <Compile Include="ViewTheMainDepartmentsInTheStoreSpecs.cs" />
     <Compile Include="ViewTheProductsInADepartmentSpecs.cs" />
   </ItemGroup>
