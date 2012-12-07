@@ -77,17 +77,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="web\application\catalogbrowsing\CatalogSearcher.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindDepartments .cs" />
     <Compile Include="web\application\catalogbrowsing\NullRequest.cs" />
-    <Compile Include="web\application\catalogbrowsing\NullRequestCatalogSearcher.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
-    <Compile Include="web\application\catalogbrowsing\GenericFeature.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewA.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewDepartmentInDepartmentRequest.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInDepartmentRequest.cs" />
     <Compile Include="web\core\aspnet\ASPNetHandler.cs" />
     <Compile Include="web\core\aspnet\ICreateAWebFormView.cs" />
@@ -105,6 +101,7 @@
     <Compile Include="web\core\IContainRequestDetails.cs" />
     <Compile Include="web\core\ICreateAControllerRequest.cs" />
     <Compile Include="web\core\IDisplayInformation.cs" />
+    <Compile Include="web\core\IFetchDataUsingARequest.cs" />
     <Compile Include="web\core\IFindCommands.cs" />
     <Compile Include="web\core\IHandleTheScenarioOfCreatingTheMissingCommand.cs" />
     <Compile Include="web\core\IMatchARequest.cs" />
@@ -114,7 +111,6 @@
     <Compile Include="web\core\RequestCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsInADepartment.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
