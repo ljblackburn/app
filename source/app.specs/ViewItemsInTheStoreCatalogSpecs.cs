@@ -22,7 +22,9 @@ namespace app.specs
           request = fake.an<IContainRequestDetails>();
           store_catalog = depends.on<IFindInformationInTheStore>();
           display_engine = depends.on<IDisplayInformation>();
-          items_request = new ViewItemsInTheStoreCatalog();
+          items_request = depends.on<ISupportAUserFeature>();
+          product_request = new ViewTheProductsInDepartmentRequest();
+          items_request = new ViewItemsInTheStoreCatalog(product_request);
           the_items_in_the_store_catalog = new List<Product>();
 
           request.setup(x => x.map<ViewTheProductsInDepartmentRequest>()).Return(items_request);
@@ -39,8 +41,9 @@ namespace app.specs
       static IContainRequestDetails request;
       static IEnumerable<Product> the_items_in_the_store_catalog;
       static IFindInformationInTheStore store_catalog;
-      static ViewTheProductsInDepartmentRequest items_request;
+      static ISupportAUserFeature items_request;
       static IDisplayInformation display_engine;
+      static ViewTheProductsInDepartmentRequest product_request;
     }
   }
 }
