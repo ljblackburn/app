@@ -19,28 +19,27 @@ namespace app.specs
     {
       Establish c = () =>
       {
-        request = fake.an<ISupportAUserFeature>();
-        request.setup(x => x.)
-        information_in_the_store_finder = depends.on<IFindInformationInTheStore>();
-        the_main_departments = new List<DepartmentItem>();
-        display_engine = depends.on<IDisplayInformation>();
+          request = fake.an<IContainRequestDetails>();
+          store_catalog = depends.on<IFindInformationInTheStore>();
+          display_engine = depends.on<IDisplayInformation>();
+          items_request = new ViewItemsInTheStoreCatalog();
+          the_items_in_the_store_catalog = new List<Product>();
 
-        information_in_the_store_finder.setup(x => x.get_the_main_departments_in_the_store()).Return(the_main_departments);
+          request.setup(x => x.map<ViewTheProductsInDepartmentRequest>()).Return(items_request);
+
+          store_catalog.setup(x => x.get_the_products_using(items_request)).Return(the_items_in_the_store_catalog);
       };
 
       Because b = () =>
         sut.process(request);
 
-      It should_get_the_list_of_the_main_departments = () =>
-      {
-      };
+      It should_display_the_items_in_the_store_catalog = () =>
+        display_engine.received(x => x.display(the_items_in_the_store_catalog));
 
-      It should_display_the_main_departments = () =>
-        display_engine.received(x => x.display(the_main_departments));
-
-      static IFindInformationInTheStore information_in_the_store_finder;
-      static ISupportAUserFeature request;
-      static IEnumerable<DepartmentItem> the_main_departments;
+      static IContainRequestDetails request;
+      static IEnumerable<Product> the_items_in_the_store_catalog;
+      static IFindInformationInTheStore store_catalog;
+      static ViewTheProductsInDepartmentRequest items_request;
       static IDisplayInformation display_engine;
     }
   }

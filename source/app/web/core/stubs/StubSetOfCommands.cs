@@ -13,9 +13,9 @@ namespace app.web.core.stubs
 
     public IEnumerator<IRunOneRequest> GetEnumerator()
     {
-      yield return new RequestCommand(x => true, new ViewTheProductsInADepartment());
-      yield return new RequestCommand(x => true, new ViewTheDepartmentsInADepartment());
-      yield return new RequestCommand(x => true, new ViewTheMainDepartmentsInTheStore());
+      yield return new RequestCommand(x => true, new ViewItemsInTheStoreCatalog(new ViewTheProductsInADepartment()));
+      yield return new RequestCommand(x => true, new ViewItemsInTheStoreCatalog(new ViewTheDepartmentsInADepartment()));
+      yield return new RequestCommand(x => true, new ViewItemsInTheStoreCatalog(new ViewTheMainDepartmentsInTheStore()));
     }
   }
 }
