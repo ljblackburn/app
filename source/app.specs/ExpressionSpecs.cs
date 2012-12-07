@@ -52,7 +52,7 @@ namespace app.specs
       It should_be_able_to_collapse_a_method_with_multiple_args_into_a_method_with_a_single_arg = () =>
       {
         Func<int, int, int> multplication = (first, second) => first*second;
-        var multiply_by_3 =...
+        Func<int, int> multiply_by_3 = (multiplier) => multiplier * multplication(1, 3);
 
         multiply_by_3(2).ShouldEqual(6);
       };

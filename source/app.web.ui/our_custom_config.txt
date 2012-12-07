@@ -1,5 +1,5 @@
 [Core]
-new_setting = This is jp
-start_url = http://localhost:8080/wearecool.delta
+new_setting = #<Configatron::Store:0x32f3a18>
+start_url = http://localhost:8080/views/default.aspx
 
 This is a config file that is getting transformed during the build process
