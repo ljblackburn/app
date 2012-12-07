@@ -41,11 +41,22 @@ namespace app.specs
         var enhanced = BlockCandy.to_run(create_connection)
                                  .cache_result();
 
+
         var first = enhanced();
         var second = enhanced();
 
         first.ShouldEqual(second);
+
       };
+
+      It should_be_able_to_collapse_a_method_with_multiple_args_into_a_method_with_a_single_arg = () =>
+      {
+        Func<int, int, int> multplication = (first, second) => first*second;
+        var multiply_by_3 =...
+
+        multiply_by_3(2).ShouldEqual(6);
+      };
+        
 
       static IDbConnection create_connection()
       {
