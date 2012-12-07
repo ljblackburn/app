@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="ASPNetHandlerSpecs.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
+    <Compile Include="ExpressionSpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="ViewASpecs.cs" />
     <Compile Include="RequestCommandSpecs.cs" />

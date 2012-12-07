@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
 using System.Web;
+using developwithpassion.specifications.extensions;
 
 namespace app.specs.utility
 {
@@ -22,6 +24,22 @@ namespace app.specs.utility
       {
         return new HttpRequest("blah.aspx", "http://localhost/blah.aspx", String.Empty);
       }
+    }
+
+    public class expressions
+    {
+      public static ExpressionBuilderFor<T> to_target<T>()
+      {
+        return new ExpressionBuilderFor<T>();
+      }
+    }
+  }
+
+  public class ExpressionBuilderFor<T>
+  {
+    public string get_property_name_of<PropertyType>(Expression<Func<T, PropertyType>> accessor)
+    {
+      return accessor.Body.downcast_to<MemberExpression>().Member.Name;
     }
   }
 }
