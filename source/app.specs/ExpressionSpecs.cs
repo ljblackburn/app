@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Machine.Specifications;
 using app.specs.utility;
@@ -25,8 +26,8 @@ namespace app.specs
         Func<int, bool> is_even = x => x%2 == 0;
 
         //build me a tree that represents an is_even check
-        var expression = Expression.Equal(Expression.Modulo(Expression.Parameter(typeof (int)), Expression.Constant(2)), Expression.Constant(0));
-        var dynamic_even = Expression.Lambda<Func<int, bool>>(expression);
+        var expression = Expression.Equal(Expression.Modulo(Expression.Parameter(typeof (int), "number"), Expression.Constant(2)), Expression.Constant(0));
+          var dynamic_even = Expression.Lambda<Func<int, bool>>(expression, );
         dynamic_even.Compile().Invoke(2).ShouldBeTrue();
       };
     }
