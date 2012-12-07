@@ -77,8 +77,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="web\application\catalogbrowsing\CatalogSearcher.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindDepartments .cs" />
+    <Compile Include="web\application\catalogbrowsing\NullRequest.cs" />
+    <Compile Include="web\application\catalogbrowsing\NullRequestCatalogSearcher.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\GenericFeature.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />

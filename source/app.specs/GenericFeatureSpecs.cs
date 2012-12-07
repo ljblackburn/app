@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Machine.Specifications;
+using Rhino.Mocks;
 using app.web;
 using app.web.application.catalogbrowsing;
 using app.web.core;
@@ -8,11 +10,11 @@ using developwithpassion.specifications.extensions;
 
 namespace app.specs
 {
-  [Subject(typeof(GenericFeature<ViewDepartmentInDepartmentRequest,DepartmentItem>))]
-  public class GenericCommandSpecs
+  [Subject(typeof(GenericFeature<ViewDepartmentInDepartmentRequest, IEnumerable<DepartmentItem>>))]
+  public class GenericFeatureSpecs
   {
     public abstract class concern : Observes<ISupportAUserFeature,
-                                      GenericFeature<ViewDepartmentInDepartmentRequest,DepartmentItem>>
+                                      GenericFeature<ViewDepartmentInDepartmentRequest,IEnumerable<DepartmentItem>>>
     {
     }
 
@@ -21,12 +23,12 @@ namespace app.specs
         Establish c = () =>
         {
             request = fake.an<IContainRequestDetails>();
-            information_in_the_store_finder = depends.on<IFindInformationInTheStore>();
             display_engine = depends.on<IDisplayInformation>();
             the_sub_departments = new List<DepartmentItem>();
-
             request.setup(x => x.map<ViewDepartmentInDepartmentRequest>()).Return(departments_request);
-            information_in_the_store_finder.setup(x => x.get_the_departments_using(departments_request)).Return(the_sub_departments);
+            searcher =
+                depends.on<IExecuteTheCatalogSearch<IEnumerable<DepartmentItem>, ViewDepartmentInDepartmentRequest>>();
+            searcher.setup(x => x.Execute(departments_request)).Return(the_sub_departments);
         };
 
         Because b = () =>
@@ -37,16 +39,17 @@ namespace app.specs
 
         };
 
-        It should_display_the_departments_within_the_main_department = () =>
-          display_engine.received(x => x.display(the_sub_departments));
+        private It should_display_the_departments_within_the_main_department = () =>
+            {
+                request.received(x => x.map<ViewDepartmentInDepartmentRequest>());
+                display_engine.received(x => x.display(the_sub_departments));
+            };
 
-
-        static IFindInformationInTheStore information_in_the_store_finder;
         static IContainRequestDetails request;
         static IEnumerable<DepartmentItem> the_sub_departments;
         static IDisplayInformation display_engine;
-        static int department_id;
         static ViewDepartmentInDepartmentRequest departments_request;
+        static IExecuteTheCatalogSearch<IEnumerable<DepartmentItem>, ViewDepartmentInDepartmentRequest> searcher;
     }
   }
 }

@@ -11,33 +11,21 @@ namespace app.web.application.catalogbrowsing
 {
     public class GenericFeature<TRequestType, TItem> : ISupportAUserFeature
     {
-        IFindInformationInTheStore store_catalog;
         IDisplayInformation display_engine;
-        private FindData<TItem, TRequestType> data_finder;
+        private IExecuteTheCatalogSearch<TItem, TRequestType> searcher; 
 
-        public GenericFeature() : this(new StubStoreCatalog(), new StubDisplayEngine())
+        public GenericFeature(IDisplayInformation display_engine,
+            IExecuteTheCatalogSearch<TItem, TRequestType> searcher)
         {
-        }
-
-        public GenericFeature(IFindInformationInTheStore information_in_the_store_catalog,
-                                                IDisplayInformation department_viewer)
-        {
-          this.store_catalog = information_in_the_store_catalog;
-          this.display_engine = department_viewer;
-        }
-
-        public FindData<TItem,TRequestType> datafinder
-        {
-            set { this.data_finder = value; }
+          this.display_engine = display_engine;
+          this.searcher = searcher;
         }
 
         public void process(IContainRequestDetails request)
         {
-            var mapped_request = request.map<TRequestType>();
-            IEnumerable<TItem> departments = data_finder(mapped_request);
-            display_engine.display(departments);
+            display_engine.display(searcher.Execute(request.map<TRequestType>()));
         }
     }
 
-    public delegate IEnumerable<TItem> FindData<TItem, TRequestType>(TRequestType request);
+    public delegate TItem FindData<TItem, TRequestType>(TRequestType request);
 }
