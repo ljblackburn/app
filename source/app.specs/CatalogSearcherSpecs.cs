@@ -20,22 +20,30 @@ namespace app.specs
 
         public class when_run : concern
         {
-            private Establish c = () =>
+            Establish c = () =>
                 {
+                    request = fake.an<ViewDepartmentInDepartmentRequest>();
+                    departments = fake.an<IEnumerable<DepartmentItem>>();
+                    catalog = fake.an<IFindInformationInTheStore>();
+                    catalog.setup(x => x.get_the_departments_using(request)).Return(departments);
+                    find_data = catalog.get_the_departments_using;
+                    depends.on(find_data);
                 };
 
-            private Because b = () =>
-                result = sut.Execute(request);
+            Because b = () =>
+                results = sut.Execute(request);
 
-            private It should_get_the_list_of_the_departments_within_the_main_department = () =>
+            It should_get_the_list_of_the_departments_within_the_main_department = () =>
                 {
-                    result.ShouldNotBeNull();
+                    results.ShouldBeTheSameAs(departments);
                 };
 
 
-            private static ViewDepartmentInDepartmentRequest request;
-            private static IEnumerable<DepartmentItem> result;
-            private static ViewDepartmentInDepartmentRequest departments_request;
+            static ViewDepartmentInDepartmentRequest request;
+            static IEnumerable<DepartmentItem> departments;
+            static IEnumerable<DepartmentItem> results; 
+            static FindData<IEnumerable<DepartmentItem>, ViewDepartmentInDepartmentRequest> find_data;
+            static IFindInformationInTheStore catalog;
         }
     }
 }

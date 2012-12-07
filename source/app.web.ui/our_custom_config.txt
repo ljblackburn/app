@@ -1,5 +1,5 @@
 [Core]
-new_setting = #<Configatron::Store:0x2fdca20>
+new_setting = #<Configatron::Store:0x2f2bbe8>
 start_url = http://localhost:8080/views/default.aspx
 
 This is a config file that is getting transformed during the build process

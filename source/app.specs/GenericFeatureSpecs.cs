@@ -25,6 +25,7 @@ namespace app.specs
             request = fake.an<IContainRequestDetails>();
             display_engine = depends.on<IDisplayInformation>();
             the_sub_departments = new List<DepartmentItem>();
+            departments_request = fake.an<ViewDepartmentInDepartmentRequest>();
             request.setup(x => x.map<ViewDepartmentInDepartmentRequest>()).Return(departments_request);
             searcher =
                 depends.on<IExecuteTheCatalogSearch<IEnumerable<DepartmentItem>, ViewDepartmentInDepartmentRequest>>();
