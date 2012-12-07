@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq.Expressions;
 using Machine.Specifications;
 using app.specs.utility;
@@ -26,10 +27,31 @@ namespace app.specs
         Func<int, bool> is_even = x => x%2 == 0;
 
         //build me a tree that represents an is_even check
-        var expression = Expression.Equal(Expression.Modulo(Expression.Parameter(typeof (int), "number"), Expression.Constant(2)), Expression.Constant(0));
-          var dynamic_even = Expression.Lambda<Func<int, bool>>(expression, );
+        var parameter_expression = Expression.Parameter(typeof(int), "number");
+        var number_two = Expression.Constant(2);
+        var modulus_of_two = Expression.Modulo(parameter_expression, number_two);
+        var equal_to_zero = Expression.Equal(modulus_of_two, Expression.Constant(0));
+        var dynamic_even = Expression.Lambda<Func<int, bool>>(equal_to_zero,parameter_expression);
+
         dynamic_even.Compile().Invoke(2).ShouldBeTrue();
       };
+
+      It should_be_able_to_cache_values_from_a_call = () =>
+      {
+        var enhanced = BlockCandy.to_run(create_connection)
+                                 .cache_result();
+
+        var first = enhanced();
+        var second = enhanced();
+
+        first.ShouldEqual(second);
+      };
+
+      static IDbConnection create_connection()
+      {
+        return new SqlConnection();
+      }
+
     }
 
     public class Person

@@ -77,6 +77,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockCandy.cs" />
+    <Compile Include="SomeClassWithErrors.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindDepartments .cs" />
     <Compile Include="web\application\catalogbrowsing\NullRequest.cs" />
